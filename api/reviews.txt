@@ -1,0 +1,36 @@
+import { Router, Request, Response } from 'express';
+import { ReviewModel } from '../models/reviews.schema';
+
+const router = Router();
+
+// GET all reviews with optional repository filter
+router.get('/', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { repo, limit = '20' } = req.query;
+    const query = repo ? { repoName: repo } : {};
+    
+    const reviews = await ReviewModel.find(query)
+      .sort({ createdAt: -1 })
+      .limit(parseInt(limit as string, 10));
+
+    res.status(200).json(reviews);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch reviews' });
+  }
+});
+
+// GET specific review by ID
+router.get('/:id', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const review = await ReviewModel.findById(req.params.id);
+    if (!review) {
+      res.status(404).json({ error: 'Review not found' });
+      return;
+    }
+    res.status(200).json(review);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch review details' });
+  }
+});
+
+export default router;
