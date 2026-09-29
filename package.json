@@ -1,25 +1,39 @@
 {
   "name": "gitsentinel",
   "version": "1.0.0",
-  "description": "Automated PR Reviewer powered by Llama-3 and BullMQ",
-  "main": "dist/server.js",
+  "description": "Automated PR Reviewer powered by Llama-3, RAG and BullMQ",
+  "main": "dist/services/webhook-handler/src/server.js",
   "scripts": {
     "start": "ts-node services/webhook-handler/src/server.ts",
-    "worker": "ts-node workers/llm-reviewer/src/worker.ts"
+    "worker": "ts-node workers/llm-reviewer/src/worker.ts",
+    "index-rules": "ts-node vector-store/indexer.ts",
+    "build": "tsc -p .",
+    "typecheck": "tsc -p . --noEmit",
+    "test": "jest"
   },
   "dependencies": {
+    "axios": "^1.7.2",
     "bullmq": "^5.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "mongoose": "^8.3.1",
-    "redis": "^4.6.13"
+    "mongoose": "^8.3.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
     "@types/node": "^20.12.7",
+    "@types/supertest": "^6.0.2",
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testMatch": ["**/tests/**/*.test.ts"]
   }
 }

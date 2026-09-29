@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Repositories | GitSentinel</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+<aside class="sidebar">
+  <div class="brand"><span class="brand-mark">GS</span><div><strong>GitSentinel</strong><small>Repository Security</small></div></div>
+  <div class="nav-label">SECURITY CENTER</div>
+  <nav><a class="nav-link " href="index.html">Dashboard</a>
+<a class="nav-link active" href="repositories.html">Repositories</a>
+<a class="nav-link " href="findings.html">Security Findings</a>
+<a class="nav-link " href="rules.html">Security Rules</a>
+<a class="nav-link " href="audit-logs.html">Audit Logs</a>
+<a class="nav-link " href="webhooks.html">Webhook Settings</a>
+<a class="nav-link " href="health.html">System Health</a>
+<a class="nav-link " href="settings.html">Settings</a></nav>
+  <div class="sidebar-footer">
+    <span class="status-dot"></span>
+    <div><strong>System Operational</strong><small>All core services online</small></div>
+  </div>
+</aside>
+<main class="main">
+  <header class="topbar">
+    <div>
+      <div class="crumb">GitSentinel / Repositories</div>
+      <h1>Repositories</h1>
+    </div>
+    <div class="top-actions"><span class="live"><span class="status-dot"></span> Live</span><button class="icon-btn" onclick="toggleTheme()">◐</button></div>
+  </header>
+  
+<section class="toolbar"><input id="repoSearch" oninput="filterRows('repoSearch','repoRows')" placeholder="Search repositories..."><button class="primary-btn" onclick="alert('Repository scan queued')">+ Scan Repository</button></section>
+<section class="panel"><div class="panel-head"><div><span class="eyebrow">CONNECTED SOURCES</span><h2>GitHub Repositories</h2></div><span class="muted">24 connected</span></div>
+<div class="table-wrap"><table><thead><tr><th>Repository</th><th>Security Score</th><th>Findings</th><th>Last Scan</th><th>Action</th></tr></thead><tbody id="repoRows">
+<tr><td><strong>gitsentinel-api</strong><small>main</small></td><td><span class="score">98</span></td><td>2</td><td>2 min ago</td><td><button class="ghost-btn">Scan</button></td></tr>
+<tr><td><strong>security-platform</strong><small>main</small></td><td><span class="score">94</span></td><td>5</td><td>8 min ago</td><td><button class="ghost-btn">Scan</button></td></tr>
+<tr><td><strong>frontend-dashboard</strong><small>develop</small></td><td><span class="score">91</span></td><td>8</td><td>14 min ago</td><td><button class="ghost-btn">Scan</button></td></tr>
+<tr><td><strong>payments-service</strong><small>main</small></td><td><span class="score low-score">76</span></td><td>8</td><td>21 min ago</td><td><button class="ghost-btn">Scan</button></td></tr>
+</tbody></table></div></section>
+
+</main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

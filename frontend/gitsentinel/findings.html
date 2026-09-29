@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Security Findings | GitSentinel</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+<aside class="sidebar">
+  <div class="brand"><span class="brand-mark">GS</span><div><strong>GitSentinel</strong><small>Repository Security</small></div></div>
+  <div class="nav-label">SECURITY CENTER</div>
+  <nav><a class="nav-link " href="index.html">Dashboard</a>
+<a class="nav-link " href="repositories.html">Repositories</a>
+<a class="nav-link active" href="findings.html">Security Findings</a>
+<a class="nav-link " href="rules.html">Security Rules</a>
+<a class="nav-link " href="audit-logs.html">Audit Logs</a>
+<a class="nav-link " href="webhooks.html">Webhook Settings</a>
+<a class="nav-link " href="health.html">System Health</a>
+<a class="nav-link " href="settings.html">Settings</a></nav>
+  <div class="sidebar-footer">
+    <span class="status-dot"></span>
+    <div><strong>System Operational</strong><small>All core services online</small></div>
+  </div>
+</aside>
+<main class="main">
+  <header class="topbar">
+    <div>
+      <div class="crumb">GitSentinel / Security Findings</div>
+      <h1>Security Findings</h1>
+    </div>
+    <div class="top-actions"><span class="live"><span class="status-dot"></span> Live</span><button class="icon-btn" onclick="toggleTheme()">◐</button></div>
+  </header>
+  
+<section class="toolbar"><input id="findingSearch" oninput="filterRows('findingSearch','findingRows')" placeholder="Search findings..."><div class="filters"><button class="filter active" onclick="severityFilter('all',this)">All</button><button class="filter" onclick="severityFilter('critical',this)">Critical</button><button class="filter" onclick="severityFilter('high',this)">High</button><button class="filter" onclick="severityFilter('medium',this)">Medium</button></div></section>
+<section class="panel"><div class="panel-head"><div><span class="eyebrow">VULNERABILITY MANAGEMENT</span><h2>Security Findings</h2></div></div>
+<div class="table-wrap"><table><thead><tr><th>Finding</th><th>Severity</th><th>Repository</th><th>Location</th><th>Status</th></tr></thead><tbody id="findingRows"><tr><td colspan="5">Loading…</td></tr></tbody></table></div></section>
+
+</main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

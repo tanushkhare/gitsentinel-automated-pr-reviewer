@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Audit Logs | GitSentinel</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+<aside class="sidebar">
+  <div class="brand"><span class="brand-mark">GS</span><div><strong>GitSentinel</strong><small>Repository Security</small></div></div>
+  <div class="nav-label">SECURITY CENTER</div>
+  <nav><a class="nav-link " href="index.html">Dashboard</a>
+<a class="nav-link " href="repositories.html">Repositories</a>
+<a class="nav-link " href="findings.html">Security Findings</a>
+<a class="nav-link " href="rules.html">Security Rules</a>
+<a class="nav-link active" href="audit-logs.html">Audit Logs</a>
+<a class="nav-link " href="webhooks.html">Webhook Settings</a>
+<a class="nav-link " href="health.html">System Health</a>
+<a class="nav-link " href="settings.html">Settings</a></nav>
+  <div class="sidebar-footer">
+    <span class="status-dot"></span>
+    <div><strong>System Operational</strong><small>All core services online</small></div>
+  </div>
+</aside>
+<main class="main">
+  <header class="topbar">
+    <div>
+      <div class="crumb">GitSentinel / Audit Logs</div>
+      <h1>Audit Logs</h1>
+    </div>
+    <div class="top-actions"><span class="live"><span class="status-dot"></span> Live</span><button class="icon-btn" onclick="toggleTheme()">◐</button></div>
+  </header>
+  
+<section class="toolbar"><input id="auditSearch" oninput="filterRows('auditSearch','auditRows')" placeholder="Search audit events..."><button class="ghost-btn">Export Logs</button></section>
+<section class="panel"><div class="panel-head"><div><span class="eyebrow">AUDIT TRAIL</span><h2>Security Events</h2></div></div>
+<div class="table-wrap"><table><thead><tr><th>Timestamp</th><th>Event</th><th>Actor</th><th>Repository</th><th>Status</th></tr></thead><tbody id="auditRows">
+<tr><td>29 Sep 2026 23:14</td><td>Webhook signature verified</td><td>GitHub App</td><td>security-platform</td><td><span class="badge good-bg">Success</span></td></tr>
+<tr><td>29 Sep 2026 23:08</td><td>Repository scan started</td><td>Worker</td><td>gitsentinel-api</td><td><span class="badge good-bg">Success</span></td></tr>
+<tr><td>29 Sep 2026 22:56</td><td>Rule SEC-001 triggered</td><td>Scanner</td><td>payments-service</td><td><span class="badge critical-bg">Alert</span></td></tr>
+<tr><td>29 Sep 2026 22:41</td><td>Repository synchronized</td><td>GitHub App</td><td>frontend-dashboard</td><td><span class="badge good-bg">Success</span></td></tr>
+</tbody></table></div></section>
+
+</main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

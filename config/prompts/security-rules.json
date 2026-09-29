@@ -1,0 +1,8 @@
+[
+  { "id": "SEC-001", "severity": "CRITICAL", "title": "Hardcoded credential", "keywords": ["password", "secret", "api_key", "apikey", "token", "private key"], "guidance": "Secrets must come from environment variables or a secrets manager, never source code." },
+  { "id": "SEC-002", "severity": "HIGH", "title": "Missing webhook/signature verification", "keywords": ["webhook", "signature", "hmac", "x-hub-signature"], "guidance": "Verify HMAC over the raw request body with a constant-time comparison." },
+  { "id": "SEC-003", "severity": "HIGH", "title": "SQL/NoSQL injection", "keywords": ["query", "$where", "select ", "find(", "req.body", "req.query"], "guidance": "Validate and parameterize all user-supplied input before it reaches a database." },
+  { "id": "SEC-004", "severity": "HIGH", "title": "Command / code execution", "keywords": ["eval(", "exec(", "child_process", "spawn(", "new function"], "guidance": "Never pass user input to shell or eval; use allow-lists and safe APIs." },
+  { "id": "SEC-008", "severity": "MEDIUM", "title": "Permissive CORS", "keywords": ["cors(", "access-control-allow-origin", "origin: '*'"], "guidance": "Restrict CORS to known origins." },
+  { "id": "DEP-014", "severity": "MEDIUM", "title": "Unsafe dependency change", "keywords": ["package.json", "requirements.txt", "go.mod", "\"latest\""], "guidance": "Pin dependency versions and review new packages." }
+]

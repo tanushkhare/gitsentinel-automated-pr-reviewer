@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Settings | GitSentinel</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+<aside class="sidebar">
+  <div class="brand"><span class="brand-mark">GS</span><div><strong>GitSentinel</strong><small>Repository Security</small></div></div>
+  <div class="nav-label">SECURITY CENTER</div>
+  <nav><a class="nav-link " href="index.html">Dashboard</a>
+<a class="nav-link " href="repositories.html">Repositories</a>
+<a class="nav-link " href="findings.html">Security Findings</a>
+<a class="nav-link " href="rules.html">Security Rules</a>
+<a class="nav-link " href="audit-logs.html">Audit Logs</a>
+<a class="nav-link " href="webhooks.html">Webhook Settings</a>
+<a class="nav-link " href="health.html">System Health</a>
+<a class="nav-link active" href="settings.html">Settings</a></nav>
+  <div class="sidebar-footer">
+    <span class="status-dot"></span>
+    <div><strong>System Operational</strong><small>All core services online</small></div>
+  </div>
+</aside>
+<main class="main">
+  <header class="topbar">
+    <div>
+      <div class="crumb">GitSentinel / Settings</div>
+      <h1>Settings</h1>
+    </div>
+    <div class="top-actions"><span class="live"><span class="status-dot"></span> Live</span><button class="icon-btn" onclick="toggleTheme()">◐</button></div>
+  </header>
+  
+<section class="grid two"><article class="panel"><div class="panel-head"><div><span class="eyebrow">INTEGRATION</span><h2>GitHub Connection</h2></div></div>
+<label class="field">GitHub App Name<input value="GitSentinel Security App"></label><label class="field">Organization<input value="Your GitHub Organization"></label><label class="field">API Base URL<input value="http://localhost:4000/api"></label><button class="primary-btn">Save Settings</button></article>
+<article class="panel"><div class="panel-head"><div><span class="eyebrow">SECURITY</span><h2>Platform Controls</h2></div></div>
+<label class="check"><input type="checkbox" checked> Enable real-time repository monitoring</label><label class="check"><input type="checkbox" checked> Require HMAC webhook verification</label><label class="check"><input type="checkbox" checked> Enable vulnerability alerts</label><label class="check"><input type="checkbox"> Email notifications</label></article></section>
+
+</main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

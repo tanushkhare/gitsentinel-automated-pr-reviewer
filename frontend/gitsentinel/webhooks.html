@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Webhook Settings | GitSentinel</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+<aside class="sidebar">
+  <div class="brand"><span class="brand-mark">GS</span><div><strong>GitSentinel</strong><small>Repository Security</small></div></div>
+  <div class="nav-label">SECURITY CENTER</div>
+  <nav><a class="nav-link " href="index.html">Dashboard</a>
+<a class="nav-link " href="repositories.html">Repositories</a>
+<a class="nav-link " href="findings.html">Security Findings</a>
+<a class="nav-link " href="rules.html">Security Rules</a>
+<a class="nav-link " href="audit-logs.html">Audit Logs</a>
+<a class="nav-link active" href="webhooks.html">Webhook Settings</a>
+<a class="nav-link " href="health.html">System Health</a>
+<a class="nav-link " href="settings.html">Settings</a></nav>
+  <div class="sidebar-footer">
+    <span class="status-dot"></span>
+    <div><strong>System Operational</strong><small>All core services online</small></div>
+  </div>
+</aside>
+<main class="main">
+  <header class="topbar">
+    <div>
+      <div class="crumb">GitSentinel / Webhook Settings</div>
+      <h1>Webhook Settings</h1>
+    </div>
+    <div class="top-actions"><span class="live"><span class="status-dot"></span> Live</span><button class="icon-btn" onclick="toggleTheme()">◐</button></div>
+  </header>
+  
+<section class="grid two"><article class="panel"><div class="panel-head"><div><span class="eyebrow">GITHUB INTEGRATION</span><h2>Webhook Configuration</h2></div><span class="badge good-bg">Verified</span></div>
+<label class="field">Endpoint URL<input value="https://api.gitsentinel.local/webhooks/github" readonly></label>
+<label class="field">Repository<input value="All connected repositories" readonly></label>
+<label class="field">Signature method<select><option>HMAC-SHA256</option></select></label>
+<label class="field">Secret Token<input type="password" value="gitsentinel-secret-token"></label>
+<button class="primary-btn" onclick="alert('Webhook configuration saved')">Save Configuration</button></article>
+<article class="panel"><div class="panel-head"><div><span class="eyebrow">EVENT STREAM</span><h2>Recent Webhooks</h2></div></div><div class="event-list">
+<div><span class="status-dot"></span><div><strong>push</strong><small>gitsentinel-api · verified · 2 min ago</small></div></div>
+<div><span class="status-dot"></span><div><strong>pull_request</strong><small>security-platform · verified · 8 min ago</small></div></div>
+<div><span class="status-dot"></span><div><strong>repository</strong><small>frontend-dashboard · verified · 14 min ago</small></div></div>
+</div></article></section>
+
+</main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

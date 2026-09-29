@@ -2,11 +2,19 @@ import { Worker, Job } from 'bullmq';
 import dotenv from 'dotenv';
 import { connectDB } from '../../../db/mongo';
 import { ReviewModel } from '../../../models/reviews.schema';
+import { fetchPrDiff } from './diffExtractor';
+import { retrieveRules } from './ragRetriever';
+import { buildMessages } from './promptBuilder';
+import { validateReview } from './outputValidator';
+import { callLLM } from './llmClient';
+import { postReviewComment, formatComment } from '../../../services/webhook-handler/src/services/prService';
 
 dotenv.config();
 
-const REDIS_HOST = process.env.REDIS_HOST || 'localhost';
-const REDIS_PORT = parseInt(process.env.REDIS_PORT || '6379');
+const connection = {
+  host: process.env.REDIS_HOST || 'localhost',
+  port: parseInt(process.env.REDIS_PORT || '6379', 10),
+};
 
 const startWorker = async () => {
   await connectDB();
@@ -14,27 +22,40 @@ const startWorker = async () => {
   const worker = new Worker(
     'pr-review-queue',
     async (job: Job) => {
-      const data = job.data;
-      console.log(`[LLM Worker] Processing PR #${data.prNumber} for ${data.owner}/${data.repo}`);
+      const { owner, repo, prNumber, headSha, diffUrl } = job.data;
+      const key = { repoName: repo, prNumber };
+      console.log(`[worker] PR #${prNumber} ${owner}/${repo}`);
 
-      await ReviewModel.findOneAndUpdate(
-        { repoName: data.repo, prNumber: data.prNumber },
-        { owner: data.owner, headSha: data.headSha, status: 'pending' },
-        { upsert: true, new: true }
-      );
+      await ReviewModel.findOneAndUpdate(key, { owner, headSha, status: 'pending' }, { upsert: true });
 
-      const mockSummary = "Automated review completed. Code structure is clean, but check input sanitization.";
-      const mockFlags = [{ ruleId: "SEC-001", severity: "MEDIUM", description: "Validate incoming parameters." }];
+      const diff = await fetchPrDiff(diffUrl);
+      const rules = retrieveRules(diff);
+      const result = validateReview(await callLLM(buildMessages(diff, rules)));
 
-      await ReviewModel.findOneAndUpdate(
-        { repoName: data.repo, prNumber: data.prNumber },
-        { status: 'completed', reviewSummary: mockSummary, securityFlags: mockFlags }
-      );
+      await ReviewModel.findOneAndUpdate(key, {
+        status: 'completed',
+        reviewSummary: result.summary,
+        securityFlags: result.securityFlags,
+      });
 
-      console.log(`[LLM Worker] Successfully reviewed PR #${data.prNumber}`);
+      try {
+        await postReviewComment(owner, repo, prNumber, formatComment(result.summary, result.securityFlags));
+      } catch (e) {
+        console.warn('[worker] could not post PR comment:', (e as Error).message);
+      }
     },
-    { connection: { host: REDIS_HOST, port: REDIS_PORT } }
+    { connection, concurrency: 2 }
   );
+
+  worker.on('failed', async (job, err) => {
+    console.error(`[worker] job ${job?.id} failed:`, err.message);
+    if (job && job.attemptsMade >= (job.opts.attempts ?? 1)) {
+      await ReviewModel.findOneAndUpdate(
+        { repoName: job.data.repo, prNumber: job.data.prNumber },
+        { status: 'failed' }
+      );
+    }
+  });
 
   console.log('GitSentinel LLM Reviewer Worker is running...');
 };

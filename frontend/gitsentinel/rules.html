@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Security Rules | GitSentinel</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+<aside class="sidebar">
+  <div class="brand"><span class="brand-mark">GS</span><div><strong>GitSentinel</strong><small>Repository Security</small></div></div>
+  <div class="nav-label">SECURITY CENTER</div>
+  <nav><a class="nav-link " href="index.html">Dashboard</a>
+<a class="nav-link " href="repositories.html">Repositories</a>
+<a class="nav-link " href="findings.html">Security Findings</a>
+<a class="nav-link active" href="rules.html">Security Rules</a>
+<a class="nav-link " href="audit-logs.html">Audit Logs</a>
+<a class="nav-link " href="webhooks.html">Webhook Settings</a>
+<a class="nav-link " href="health.html">System Health</a>
+<a class="nav-link " href="settings.html">Settings</a></nav>
+  <div class="sidebar-footer">
+    <span class="status-dot"></span>
+    <div><strong>System Operational</strong><small>All core services online</small></div>
+  </div>
+</aside>
+<main class="main">
+  <header class="topbar">
+    <div>
+      <div class="crumb">GitSentinel / Security Rules</div>
+      <h1>Security Rules</h1>
+    </div>
+    <div class="top-actions"><span class="live"><span class="status-dot"></span> Live</span><button class="icon-btn" onclick="toggleTheme()">◐</button></div>
+  </header>
+  
+<section class="panel"><div class="panel-head"><div><span class="eyebrow">POLICY ENGINE</span><h2>Security Rules</h2></div><button class="primary-btn">+ Create Rule</button></div>
+<div class="rule-grid">
+<article class="rule"><div><span class="rule-id">SEC-001</span><span class="badge critical-bg">Critical</span></div><h3>Secret Exposure</h3><p>Detect committed credentials, API keys and sensitive tokens.</p><label class="switch"><input type="checkbox" checked><span></span> Enabled</label></article>
+<article class="rule"><div><span class="rule-id">SEC-002</span><span class="badge high-bg">High</span></div><h3>Webhook Verification</h3><p>Require HMAC signature verification for inbound GitHub events.</p><label class="switch"><input type="checkbox" checked><span></span> Enabled</label></article>
+<article class="rule"><div><span class="rule-id">SEC-003</span><span class="badge high-bg">High</span></div><h3>Dependency Risk</h3><p>Flag vulnerable or outdated third-party dependencies.</p><label class="switch"><input type="checkbox" checked><span></span> Enabled</label></article>
+<article class="rule"><div><span class="rule-id">SEC-008</span><span class="badge medium-bg">Medium</span></div><h3>Configuration Security</h3><p>Check repository configuration against secure defaults.</p><label class="switch"><input type="checkbox"><span></span> Disabled</label></article>
+</div></section>
+
+</main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard | GitSentinel</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+<aside class="sidebar">
+  <div class="brand"><span class="brand-mark">GS</span><div><strong>GitSentinel</strong><small>Repository Security</small></div></div>
+  <div class="nav-label">SECURITY CENTER</div>
+  <nav><a class="nav-link active" href="index.html">Dashboard</a>
+<a class="nav-link " href="repositories.html">Repositories</a>
+<a class="nav-link " href="findings.html">Security Findings</a>
+<a class="nav-link " href="rules.html">Security Rules</a>
+<a class="nav-link " href="audit-logs.html">Audit Logs</a>
+<a class="nav-link " href="webhooks.html">Webhook Settings</a>
+<a class="nav-link " href="health.html">System Health</a>
+<a class="nav-link " href="settings.html">Settings</a></nav>
+  <div class="sidebar-footer">
+    <span class="status-dot"></span>
+    <div><strong>System Operational</strong><small>All core services online</small></div>
+  </div>
+</aside>
+<main class="main">
+  <header class="topbar">
+    <div>
+      <div class="crumb">GitSentinel / Dashboard</div>
+      <h1>Dashboard</h1>
+    </div>
+    <div class="top-actions"><span class="live"><span class="status-dot"></span> Live</span><button class="icon-btn" onclick="toggleTheme()">◐</button></div>
+  </header>
+  
+<section class="stats">
+  <article class="stat-card"><span>Repositories</span><strong id="statRepos">–</strong><em class="good" id="statReposNote">reviewed</em></article>
+  <article class="stat-card"><span>Reviews Completed</span><strong id="statDone">–</strong><em class="good" id="statFailed"></em></article>
+  <article class="stat-card"><span>Open Findings</span><strong id="statFindings">–</strong><em class="warn" id="statHigh"></em></article>
+  <article class="stat-card"><span>Pending Reviews</span><strong id="statPending">–</strong><em class="good">in queue</em></article>
+</section>
+<section class="grid two">
+  <article class="panel">
+    <div class="panel-head"><div><span class="eyebrow">SECURITY POSTURE</span><h2>Vulnerability Severity</h2></div><span class="badge good-bg">Live</span></div>
+    <div class="bars">
+      <div><span>Critical</span><b><i id="barCritical"></i></b><strong id="cntCritical">0</strong></div>
+      <div><span>High</span><b><i id="barHigh"></i></b><strong id="cntHigh">0</strong></div>
+      <div><span>Medium</span><b><i id="barMedium"></i></b><strong id="cntMedium">0</strong></div>
+      <div><span>Low</span><b><i id="barLow"></i></b><strong id="cntLow">0</strong></div>
+    </div>
+  </article>
+  <article class="panel">
+    <div class="panel-head"><div><span class="eyebrow">SYSTEM HEALTH</span><h2>Service Status</h2></div></div>
+    <div class="health-list">
+      <div><span>API Gateway</span><b class="online">Operational</b></div>
+      <div><span>MongoDB</span><b class="online">Connected</b></div>
+      <div><span>Redis / BullMQ</span><b class="online">Running</b></div>
+      <div><span>Vector Store</span><b class="online">Ready</b></div>
+      <div><span>Webhook Verification</span><b class="online">Active</b></div>
+    </div>
+  </article>
+</section>
+<section class="panel">
+  <div class="panel-head"><div><span class="eyebrow">ACTIVITY</span><h2>Recent Security Events</h2></div><a class="text-link" href="audit-logs.html">View all →</a></div>
+  <div class="table-wrap"><table><thead><tr><th>Event</th><th>Repository</th><th>Status</th><th>Time</th></tr></thead>
+  <tbody id="eventRows"><tr><td colspan="4">Loading…</td></tr></tbody></table></div>
+</section>
+
+</main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

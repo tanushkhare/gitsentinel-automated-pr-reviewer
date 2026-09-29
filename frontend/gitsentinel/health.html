@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>System Health | GitSentinel</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+<aside class="sidebar">
+  <div class="brand"><span class="brand-mark">GS</span><div><strong>GitSentinel</strong><small>Repository Security</small></div></div>
+  <div class="nav-label">SECURITY CENTER</div>
+  <nav><a class="nav-link " href="index.html">Dashboard</a>
+<a class="nav-link " href="repositories.html">Repositories</a>
+<a class="nav-link " href="findings.html">Security Findings</a>
+<a class="nav-link " href="rules.html">Security Rules</a>
+<a class="nav-link " href="audit-logs.html">Audit Logs</a>
+<a class="nav-link " href="webhooks.html">Webhook Settings</a>
+<a class="nav-link active" href="health.html">System Health</a>
+<a class="nav-link " href="settings.html">Settings</a></nav>
+  <div class="sidebar-footer">
+    <span class="status-dot"></span>
+    <div><strong>System Operational</strong><small>All core services online</small></div>
+  </div>
+</aside>
+<main class="main">
+  <header class="topbar">
+    <div>
+      <div class="crumb">GitSentinel / System Health</div>
+      <h1>System Health</h1>
+    </div>
+    <div class="top-actions"><span class="live"><span class="status-dot"></span> Live</span><button class="icon-btn" onclick="toggleTheme()">◐</button></div>
+  </header>
+  
+<section class="stats"><article class="stat-card"><span>API Uptime</span><strong>99.98%</strong><em class="good">Operational</em></article><article class="stat-card"><span>Queue</span><strong>12</strong><em class="good">Jobs healthy</em></article><article class="stat-card"><span>MongoDB</span><strong>38ms</strong><em class="good">Latency</em></article><article class="stat-card"><span>Webhook</span><strong>100%</strong><em class="good">Verified</em></article></section>
+<section class="panel"><div class="panel-head"><div><span class="eyebrow">INFRASTRUCTURE</span><h2>System Health</h2></div><span class="badge good-bg">All systems operational</span></div><div class="service-grid">
+<div class="service"><span class="status-dot"></span><strong>API Service</strong><small>Running · 99.98% uptime</small></div>
+<div class="service"><span class="status-dot"></span><strong>Redis / BullMQ</strong><small>Running · 12 queued jobs</small></div>
+<div class="service"><span class="status-dot"></span><strong>MongoDB</strong><small>Connected · 38ms latency</small></div>
+<div class="service"><span class="status-dot"></span><strong>Vector Store</strong><small>Ready · index healthy</small></div>
+<div class="service"><span class="status-dot"></span><strong>Webhook Worker</strong><small>Active · signatures verified</small></div>
+<div class="service"><span class="status-dot"></span><strong>Security Scanner</strong><small>Running · last scan 2m ago</small></div>
+</div></section>
+
+</main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
